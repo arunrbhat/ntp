@@ -3,23 +3,29 @@
 #
 #
 class ntp (
+  $package_name = 'ntp',
   $package_ensure = 'present',
-  $source_file = '/tmp/ntp.conf',
-  $ensure_services  = 'running',
+  $package_provider = 'yum',
+  $file_path = '/etc/ntp.conf',
+  $file_source = '/tmp/ntp.conf',
+  $file_ensure = 'running',
+  $services_name = 'ntpd',
+  $service_ensure  = 'running',
+  $service_enable = 'true',
 ){
   # package install 
-  package { 'ntp':
+  package { $package_name:
     ensure   => $package_ensure,
-    provider => 'yum',
+    provider => $package_provider,
   }
   # confi files
-  file { '/etc/ntp.conf':
-    ensure => 'present',
-    source => $source_file,
+  file { $file_path:
+    ensure => $file_ensure,
+    source => $file_source,
   }
   # manage service 
-  service { 'ntpd':
+  service { $service_name:
     ensure => $ensure_services,
-    enable => true,
+    enable => $service_enable,
   }
 }
