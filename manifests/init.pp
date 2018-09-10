@@ -8,7 +8,7 @@ class ntp (
   $package_provider = 'yum',
   $file_path = '/etc/ntp.conf',
   $file_source = '/tmp/ntp.conf',
-  $file_ensure = 'running',
+  $file_ensure = 'true',
   $service_name = 'ntpd',
   $service_ensure  = 'running',
   $service_enable = 'true',
