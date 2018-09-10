@@ -25,7 +25,7 @@ class ntp (
   }
   # manage service 
   service { $service_name:
-    ensure => $ensure_services,
+    ensure => $service_ensure,
     enable => $service_enable,
   }
 }
