@@ -11,21 +11,10 @@ class ntp (
   $file_ensure = 'present',
   $service_name = 'ntpd',
   $service_ensure  = 'running',
-  $service_enable = 'true',
-){
-  # package install 
-  package { $package_name:
-    ensure   => $package_ensure,
-    provider => $package_provider,
-  }
-  # confi files
-  file { $file_path:
-    ensure => $file_ensure,
-    source => $file_source,
-  }
-  # manage service 
-  service { $service_name:
-    ensure => $service_ensure,
-    enable => $service_enable,
-  }
+  $service_enable = true,
+) {
+  # include classes
+  include ::ntp:install
+  include ::ntp:config
+  include ::ntp:service
 }
